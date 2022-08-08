@@ -82,11 +82,11 @@
 
 
 //Events
-
-let hacerClick= function () {
-    document.getElementById('header-title').textContent='Prueba de click';
-    //console.log('Usted ha hecho click');
-}
-document.getElementById('boton').addEventListener('click',hacerClick);
+// let hacerClick= function () {
+//     document.getElementById('header-title').textContent='Prueba de click';
+//     //console.log('Usted ha hecho click');
+// }
+// document.getElementById('boton').addEventListener('click',hacerClick);
 
 //document.getElementById('boton').addEventListener('click',);
+
