@@ -88,5 +88,33 @@
 // }
 // document.getElementById('boton').addEventListener('click',hacerClick);
 
-//document.getElementById('boton').addEventListener('click',);
+// document.getElementById('boton').addEventListener('click',);
+
+
+
+//Aqui el code que llena la lista
+let form = document.getElementById('formAgregar');
+let lista = document.getElementById('items');
+
+ form.addEventListener('submit',agregarItem);
+
+ function agregarItem(e){
+    e.preventDefault();
+    //creamos el elemneto li
+    var newItem= document.getElementById('item').value;
+    var li = document.createElement('li');
+    li.className='list-group-item';
+    li.appendChild(document.createTextNode(newItem));
+    //creamos el boton de eliminar
+    let boton= document.createElement('button');
+    boton.className='btn btn-danger btn-sm float-right';
+    boton.appendChild(document.createTextNode('X'));
+
+    li.appendChild(boton);
+  
+    lista.appendChild(li);
+ }
+
+// console.log(form);
+// console.log(lista);
 
