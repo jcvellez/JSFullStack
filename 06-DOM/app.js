@@ -96,7 +96,9 @@
 let form = document.getElementById('formAgregar');
 let lista = document.getElementById('items');
 
+//vento submit del formulario
  form.addEventListener('submit',agregarItem);
+//Eveno click de la lista
 
  function agregarItem(e){
     e.preventDefault();
