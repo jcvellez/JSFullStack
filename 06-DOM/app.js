@@ -95,28 +95,54 @@
 //Aqui el code que llena la lista
 let form = document.getElementById('formAgregar');
 let lista = document.getElementById('items');
+let filtro = document.getElementById('filtro');
 
-//vento submit del formulario
- form.addEventListener('submit',agregarItem);
-//Eveno click de la lista
+//evento submit del formulario (evento,funcion)
+form.addEventListener('submit', agregarItem);
+//Evento click de la lista
+lista.addEventListener('click', eliminarItem);
+//Evento del teclado en el campo de filtro
+filtro.addEventListener('keyup', filtarItems);
 
- function agregarItem(e){
-    e.preventDefault();
-    //creamos el elemneto li
-    var newItem= document.getElementById('item').value;
-    var li = document.createElement('li');
-    li.className='list-group-item';
-    li.appendChild(document.createTextNode(newItem));
-    //creamos el boton de eliminar
-    let boton= document.createElement('button');
-    boton.className='btn btn-danger btn-sm float-right';
-    boton.appendChild(document.createTextNode('X'));
 
-    li.appendChild(boton);
-  
-    lista.appendChild(li);
- }
+//Funcion para agregar un item a la lista 
+function agregarItem(e) {
+   e.preventDefault();
+   //creamos el elemneto li
+   var newItem = document.getElementById('item').value;
+   var li = document.createElement('li');
+   li.className = 'list-group-item';
+   li.appendChild(document.createTextNode(newItem));
+   //creamos el boton de eliminar
+   let boton = document.createElement('button');
+   boton.className = 'btn btn-danger btn-sm float-right eliminar';
+   boton.appendChild(document.createTextNode('X'));
 
-// console.log(form);
-// console.log(lista);
+   li.appendChild(boton);
 
+   lista.appendChild(li);
+}
+
+//Funcion para eliminar un item a la lista 
+function eliminarItem(e) {
+   if (e.target.classList.contains('eliminar')) {
+      if (confirm('Quieres eliminar este elemento?')) {
+         let li = e.target.parentElement;
+         lista.removeChild(li);
+      }
+   }
+}
+
+function filtarItems(e) {
+   let texto = e.target.value.toLowerCase();
+   let items = lista.getElementsByTagName('li');
+   Array.from(items).forEach(function (item) {
+      //firstChild es xq es el primer elemnto del item el otro elemento es el boton
+      let itemNombre = item.firstChild.textContent;
+      if (itemNombre.toLowerCase().indexOf(texto) != -1) {
+         item.style.display = 'block';
+      } else {
+         item.style.display = 'none';
+      }
+   });
+}
