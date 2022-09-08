@@ -69,10 +69,11 @@
 var persona = {    
     nombre:'Juank',
     apellido:'Vellez',
-    gustos:['Futbol','Ingles','Programar'],
+    gastos:['Futbol','Ingles','Programar'],
     trabajo:'Engeneer',
     esCasado: false,
-    anionac: 1986,    
+    anionac: 1986, 
+    edad:"",   
     devolverEdad: function(){
          this.edad = 2022- this.anionac;
     }    
