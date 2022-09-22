@@ -30,9 +30,45 @@ const ingredientes = [
     }
 ];
 
-let index= ingredientes.findIndex(function(ing) {
-    //console.log(ing);    
-    return ing.titulo === "mani";     
+let buscarIngrediente= function (ingredientes,titulo) {
+    const index= ingredientes.findIndex(function (ing,index) {
+        return ing.titulo === titulo;
+    });
+    return index;
+}
+// let index= ingredientes.findIndex(function(ing){
+//     //console.log(ing);    
+//     return ing.titulo === "mani";     
+// });
+
+// let obj= ingredientes[buscarIngrediente(ingredientes, 'chifle')];
+// console.log(ingredientes.indexOf(obj));
+
+// let filtrarIngredientes = ingredientes.filter(function(ing,index){
+//       return ing.titulo.includes('fl');  
+// }); 
+// console.log(filtrarIngredientes);
+
+
+
+//Uso de filter
+// const paises = ['Ecuador', 'Colombia', 'Peru', 'España', 'Mexico'];
+// const result = paises.filter(p => p.includes('o'));
+// console.log(result);
+
+
+
+//ordenamiento con metodo sort
+console.log(ingredientes);
+
+ingredientes.sort(function (a,b){
+    if (a.titulo > b.titulo) {
+        return 1;
+    }
+    if (a.titulo < b.titulo) {
+        return -1;
+    }
+    return 0;
 });
 
-console.log(index);
+console.log(ingredientes);
