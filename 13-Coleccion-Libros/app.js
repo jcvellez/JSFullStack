@@ -28,7 +28,9 @@ class UI{
         setTimeout(() => document.querySelector('.alert').remove() , 3000);
     }
     static limpiarCampos(){
-
+        document.querySelector('#titulo').value = '';
+        document.querySelector('#autor').value = '';
+        document.querySelector('#isbn').value = '';
     }
 }
 
@@ -58,13 +60,13 @@ document.querySelector('#libro-form').addEventListener('submit',(e)=>{
     //Obtener valores de los campos
     const titulo = document.querySelector('#titulo').value;
     const autor = document.querySelector('#autor').value;
-    const ISBN = document.querySelector('#ISBN').value;
+    const isbn = document.querySelector('#isbn').value;
 
     if (titulo==='' || autor==='' || isbn==='') {
         UI.mostrarAlerta('Por favor ingrese todos los datos','danger');        
     }else{
         const libro= new Libro(titulo, autor, isbn);
         Datos.agregarLibro(libro);
-
+        UI.limpiarCampos();
     }
 });
