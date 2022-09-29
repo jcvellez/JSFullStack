@@ -10,10 +10,19 @@ class Libro{
 
 class UI{
     static mostrarLibros(){
-
+        const libros= Datos.traerLibros();
+        libros.forEach((libro)=> UI.agregarLibroLista(libro));
     }   
-    static agregarLibro(libro){
-
+    static agregarLibroLista(libro){
+        let lista= document.querySelector('#libro-list');
+        let fila=  document.createElement('tr');
+        fila.innerHTML= `
+        <td>${libro.titulo}</td>
+        <td>${libro.autor}</td>
+        <td>${libro.isbn}</td>
+        <td><a href="#" class="btn btn-danger btn-sm delete">X</a></td>
+        `;
+        lista.appendChild(fila);
     }   
     static eliminarlibro(){
 
@@ -54,6 +63,10 @@ class Datos{
     }
 }
 
+//Carga de la pagina
+document.addEventListener('DOMContentLoaded', UI.mostrarLibros());
+
+
 //controlar el evento submit
 document.querySelector('#libro-form').addEventListener('submit',(e)=>{
     e.preventDefault();
@@ -67,6 +80,7 @@ document.querySelector('#libro-form').addEventListener('submit',(e)=>{
     }else{
         const libro= new Libro(titulo, autor, isbn);
         Datos.agregarLibro(libro);
+        UI.agregarLibroLista(libro);
         UI.limpiarCampos();
     }
 });
