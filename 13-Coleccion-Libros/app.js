@@ -24,8 +24,10 @@ class UI{
         `;
         lista.appendChild(fila);
     }   
-    static eliminarlibro(){
-
+    static eliminarLibro(el){
+        if (el.classList.contains('delete')) {
+            el.parentElement.parentElement.remove();
+        }
     }  
     static mostrarAlerta(mensaje, clasName){
         const div= document.createElement('div');
@@ -59,13 +61,18 @@ class Datos{
         localStorage.setItem('libros',JSON.stringify(libros)); 
     }
     static removerLibro(isbn){
-
+        const libros = Datos.traerLibros();    
+        libros.forEach((libro, index)=>{
+            if (libro.isbn === isbn) {
+                libros.splice(index,1);
+            }
+        });
+        localStorage.setItem('libros',JSON.stringify(libros)); 
     }
 }
 
 //Carga de la pagina
 document.addEventListener('DOMContentLoaded', UI.mostrarLibros());
-
 
 //controlar el evento submit
 document.querySelector('#libro-form').addEventListener('submit',(e)=>{
@@ -81,6 +88,13 @@ document.querySelector('#libro-form').addEventListener('submit',(e)=>{
         const libro= new Libro(titulo, autor, isbn);
         Datos.agregarLibro(libro);
         UI.agregarLibroLista(libro);
+        UI.mostrarAlerta('Libro agregado a la coleccion','success');
         UI.limpiarCampos();
     }
+});
+
+document.querySelector('#libro-list').addEventListener('click',(e)=>{
+    UI.eliminarLibro(e.target); //la e es el elmento, y target se pone por q al elemento se le obtiene la etiqueta 
+    Datos.removerLibro(e.target.parentElement.previousElementSibling.textContent);
+    UI.mostrarAlerta('Libro eliminado','success');
 });
