@@ -60,7 +60,7 @@ let getPermisos = id => {
     return new Promise((resolve, reject) => {
         setTimeout((id) => {
             let permiso = ['admin', 'creador'];
-            resolve(permiso);
+            resolve(permiso[1]);
         }, 1500, id);
     })
 };
