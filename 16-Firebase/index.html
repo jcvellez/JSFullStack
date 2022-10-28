@@ -1,17 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aplicacion Lista de Tareas</title>
-<!-- Compiled and minified CSS -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-<!-- Compiled and minified JavaScript -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </head>
+
 <body>
-    <h1>Estamos en prueba</h1>
-    <script src="app.js"></script>
+    <nav>
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo right">Lista de Tareas</a>
+        </div>
+    </nav>
+    <div class="container">
+        <form action="add-task-form">
+            <input type="text" name="titulo" placeholder="Agregar tarea">
+            <a class="waves-effect waves-light btn">Agregar</a>
+        </form>
+        <ul class="collection">
+            <li class="collection-item">
+                <span>Tarea 1</span>
+                <i></i>
+                <i class="material-icons secondary-content">delete</i>
+                <a href="#modal1" class="secondary-content">
+                    <i class="material-icons">edit</i>
+                </a>
+            </li>
+        </ul>
+        <button data-target="modal1" class="btn modal-trigger">Modal</button>
+        <!-- Modal Trigger -->
+        <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a>
+
+        <!-- Modal Structure -->
+        <div id="modal1" class="modal">
+            <div class="modal-content">
+                <h4>Modal Header</h4>
+                <p>A bunch of text</p>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+            </div>
+        </div>
+    </div>
 </body>
+
 </html>
