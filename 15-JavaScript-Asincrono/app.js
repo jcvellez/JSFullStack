@@ -60,30 +60,56 @@ let getPermisos = id => {
     return new Promise((resolve, reject) => {
         setTimeout((id) => {
             let permiso = ['admin', 'creador'];
-            resolve(permiso[1]);
+            resolve(permiso);
         }, 1500, id);
     })
 };
 
+//Funciones con Async/Await
+async function getUsuariosAW() {
+    let IDs = await getUsuariosIDs;
+    console.log(IDs);
+    let usuario = await getUsuario(IDs[1]);
+    console.log(usuario);
+    let permiso = await getPermisos(usuario);
+    console.log(permiso);
+    return usuario;
+};
+
+//getUsuariosAW().then(resultado=>console.log(`El resultado es ${resultado}`));
+
+//Ejemplo de una llamada AJAX con HTML Request
+const request = new XMLHttpRequest();
+request.open('GET', 'https://jsonplaceholder.typicode.com/users');
+request.send();
+request.addEventListener('readystatechange', (e) => {
+    if (e.target.readyState === 4) {
+        let datos = JSON.parse(e.target.responseText);
+        console.log(datos);  
+    }
+});
 
 //llamado principal
-getUsuariosIDs
-    .then(IDs => {
-        console.log(IDs);
-        return getUsuario(IDs[2]);
-    })
-    .then((usuario) => {
-        console.log(usuario);
-        return getPermisos(usuario.id);
-    })
-    .then((permisos)=>{
-        console.log(permisos);
-    })
-    .catch(() => {
-        console.log('Error');
-    });
+// getUsuariosIDs
+//     .then(IDs => {
+//         console.log(IDs);
+//         return getUsuario(IDs[2]);
+//     })
+//     .then((usuario) => {
+//         console.log(usuario);
+//         return getPermisos(usuario.id);
+//     })
+//     .then((permisos)=>{
+//         console.log(permisos);
+//     })
+//     .catch(() => {
+//         console.log('Error');
+//     });
 
 
+
+
+//****************************************************************************************************************************
 // ///Ejemplo del uso de promesas
 // //Ejemplo 1
 // let promesa = new Promise((resolve, reject) => {
