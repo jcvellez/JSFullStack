@@ -20,35 +20,59 @@
         </div>
     </nav>
     <div class="container">
-        <form action="add-task-form">
+        <form id="add-task-form">
             <input type="text" name="titulo" placeholder="Agregar tarea">
-            <a class="waves-effect waves-light btn">Agregar</a>
+            <button class="waves-effect waves-light btn">Agregar</button>
         </form>
-        <ul class="collection">
-            <li class="collection-item">
+        <ul class="collection" id="lista-tareas">
+            <!--<li class="collection-item">
                 <span>Tarea 1</span>
-                <i></i>
                 <i class="material-icons secondary-content">delete</i>
-                <a href="#modal1" class="secondary-content">
+                <a href="#modal1" class="modal-trigger secondary-content">
                     <i class="material-icons">edit</i>
                 </a>
-            </li>
+            </li>-->
         </ul>
+        <!--
         <button data-target="modal1" class="btn modal-trigger">Modal</button>
         <!-- Modal Trigger -->
-        <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a>
+        <!--<a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a>
+        -->
 
         <!-- Modal Structure -->
         <div id="modal1" class="modal">
             <div class="modal-content">
-                <h4>Modal Header</h4>
-                <p>A bunch of text</p>
+                <h4>Actualizar</h4>
+                <input type="text" name="newTitle" placeholder="aqui el nuevo titulo">
             </div>
             <div class="modal-footer">
-                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+                <a href="#!" id="updateBtn" class="modal-close waves-effect waves-green btn-flat">Aceptar</a>
             </div>
         </div>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var elems = document.querySelectorAll('.modal');
+            var instances = M.Modal.init(elems);
+        });
+    </script>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+
+    <script>
+        let firebaseConfig = {
+            apiKey: "AIzaSyAr8n7NMwbGkgy5FdhvIEr7VOEgllthQxM",
+            authDomain: "listatareas-5cd56.firebaseapp.com",
+            projectId: "listatareas-5cd56",
+            storageBucket: "listatareas-5cd56.appspot.com",
+            messagingSenderId: "894408464560",
+            appId: "1:894408464560:web:01ac3ecc609bd5acc2c375"
+        };
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+    </script>
+    <script src="app.js"></script>
 </body>
 
 </html>
